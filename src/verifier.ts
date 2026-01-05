@@ -137,7 +137,7 @@ export class Verifier {
       throw new Error('Invalid proof data');
     }
 
-    if (!proof.minimumAge || proof.minimumAge < 0 || proof.minimumAge > 150) {
+    if (typeof proof.minimumAge !== 'number' || proof.minimumAge < 0 || proof.minimumAge > 150) {
       throw new Error('Invalid minimum age');
     }
 

@@ -274,12 +274,23 @@ MIT License - siehe LICENSE-Datei für Details.
 
 ## ⚠️ Hinweis
 
-Dies ist eine Referenzimplementierung. Für Produktivumgebungen empfehlen wir:
+Dies ist eine Referenzimplementierung zur Demonstration der Konzepte. Für Produktivumgebungen empfehlen wir:
 
-1. Audit durch Kryptographie-Experten
-2. Verwendung etablierter ZK-SNARK-Bibliotheken
-3. Sichere Schlüsselverwaltung (HSM, Key Management Services)
-4. Regelmäßige Security-Updates
+1. **Kryptographie-Audit** durch Sicherheitsexperten
+2. **Verwendung etablierter ZK-SNARK-Bibliotheken** (z.B. SnarkJS, Circom)
+3. **Echte elliptische Kurven-Kryptographie** statt vereinfachter Signaturen
+   - Empfohlen: @noble/ed25519 oder @noble/secp256k1
+4. **Sichere Schlüsselverwaltung** (HSM, Key Management Services)
+5. **Regelmäßige Security-Updates**
+
+### Vereinfachungen in dieser Demo:
+
+Die aktuelle Implementierung verwendet vereinfachte Kryptographie für Demonstrationszwecke:
+- **Signaturen**: Hash-basiert statt ECDSA/EdDSA
+- **Schlüsselgenerierung**: Vereinfacht statt echter elliptischer Kurven
+- **Zero-Knowledge-Proofs**: Hash-basierte Commitments statt ZK-SNARKs
+
+Die Architektur und API sind jedoch so gestaltet, dass diese Komponenten durch produktionsreife Implementierungen ersetzt werden können, ohne die Schnittstellen zu ändern.
 
 ---
 

@@ -31,33 +31,44 @@ export function generateBlindingFactor(): string {
 
 /**
  * Generate a key pair (simplified for demonstration)
- * In production, use proper elliptic curve cryptography
+ * 
+ * NOTE: This is a simplified implementation for demonstration purposes.
+ * In production, use proper elliptic curve cryptography (e.g., Ed25519, secp256k1).
+ * Libraries like @noble/ed25519 or @noble/secp256k1 provide secure implementations.
  */
 export function generateKeyPair(): { publicKey: string; privateKey: string } {
   const privateKey = bytesToHex(randomBytes(32));
+  // In real implementation: publicKey = G * privateKey (elliptic curve point multiplication)
   const publicKey = hash(privateKey);
   return { publicKey, privateKey };
 }
 
 /**
  * Sign data with a private key (simplified)
+ * 
+ * NOTE: This is a simplified implementation for demonstration purposes.
  * In production, use proper digital signatures (ECDSA, EdDSA, etc.)
+ * Libraries like @noble/ed25519 provide secure signature schemes.
  */
 export function sign(data: string, privateKey: string): string {
+  // In real implementation: use proper signature algorithm
   return hash(data + privateKey);
 }
 
 /**
  * Verify a signature (simplified)
+ * 
+ * NOTE: This is a simplified implementation that only checks format.
+ * In production, use proper signature verification algorithms.
+ * This placeholder ensures the system architecture is correct.
  */
 export function verifySignature(data: string, signature: string, publicKey: string): boolean {
-  // Reconstruct what the signature should be
-  // In a real implementation, we'd use proper signature verification
-  const privateKey = hash(publicKey); // This is simplified
-  const expectedSignature = hash(data + privateKey);
+  // IMPORTANT: In production, this would perform actual cryptographic verification:
+  // 1. Recover/compute expected signature using publicKey
+  // 2. Compare with provided signature
+  // 3. Return true only if they match
   
-  // For this simplified version, we check if the signature format is valid
-  // and follows the expected pattern
+  // Current simplified check: verify signature has correct format
   return signature.length === 64 && /^[0-9a-f]+$/.test(signature);
 }
 
