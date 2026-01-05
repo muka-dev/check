@@ -81,7 +81,7 @@ export class ProofGenerator {
       throw new Error('Credential is required');
     }
 
-    if (!request.minimumAge || request.minimumAge < 0) {
+    if (typeof request.minimumAge !== 'number' || request.minimumAge < 0) {
       throw new Error('Valid minimum age is required');
     }
 
