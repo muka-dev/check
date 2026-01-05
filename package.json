@@ -1,0 +1,47 @@
+{
+  "name": "check",
+  "version": "1.0.0",
+  "description": "age verification check, decentralized, anonymous",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "nodemon --watch src --ext ts --exec ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint 'src/**/*.ts'",
+    "lint:fix": "eslint 'src/**/*.ts' --fix",
+    "format": "prettier --write 'src/**/*.{ts,json}'",
+    "format:check": "prettier --check 'src/**/*.{ts,json}'",
+    "prepare": "husky install",
+    "clean": "rm -rf dist coverage"
+  },
+  "keywords": [
+    "age-verification",
+    "decentralized",
+    "anonymous",
+    "privacy",
+    "identity"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.51.0",
+    "@typescript-eslint/parser": "^8.51.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "husky": "^9.1.7",
+    "jest": "^30.2.0",
+    "lint-staged": "^16.2.7",
+    "nodemon": "^3.1.11",
+    "prettier": "^3.7.4",
+    "ts-jest": "^29.4.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
