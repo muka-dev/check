@@ -3,7 +3,7 @@ import { ICryptographicService } from '../../domain/services/ICryptographicServi
 import { AgeVerificationService } from '../../domain/services/AgeVerificationService';
 import { Age } from '../../domain/value-objects/Age';
 import { ProofHash } from '../../domain/value-objects/ProofHash';
-import { VerifyProofDTO } from '../dto/VerifyProofDTO';
+import { IVerifyProofDTO } from '../dto/VerifyProofDTO';
 
 /**
  * Use Case: Verify Age Proof
@@ -16,16 +16,13 @@ export class VerifyAgeProofUseCase {
     private readonly domainService: AgeVerificationService,
   ) {}
 
-  public async execute(dto: VerifyProofDTO): Promise<boolean> {
+  public async execute(dto: IVerifyProofDTO): Promise<boolean> {
     // Create value objects
     const proofHash = new ProofHash(dto.proofHash);
     const minimumAge = new Age(dto.minimumAge);
 
     // Verify cryptographic proof
-    const isCryptographicallyValid = await this.cryptoService.verifyAgeProof(
-      proofHash,
-      minimumAge,
-    );
+    const isCryptographicallyValid = await this.cryptoService.verifyAgeProof(proofHash);
 
     if (!isCryptographicallyValid) {
       return false;

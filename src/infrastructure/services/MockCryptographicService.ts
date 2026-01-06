@@ -1,4 +1,4 @@
-import * as crypto from 'crypto';
+import { createHash, randomUUID } from 'crypto';
 import { ICryptographicService } from '../../domain/services/ICryptographicService';
 import { Age } from '../../domain/value-objects/Age';
 import { ProofHash } from '../../domain/value-objects/ProofHash';
@@ -17,12 +17,12 @@ export class MockCryptographicService implements ICryptographicService {
     // In a real implementation, this would generate a zero-knowledge proof
     // For now, we create a deterministic hash that proves age without revealing it
     const data = `${actualAge.getValue()}-${minimumAge.getValue()}-${secret}`;
-    const hash = crypto.createHash('sha256').update(data).digest('hex');
+    const hash = createHash('sha256').update(data).digest('hex');
 
     return new ProofHash(hash);
   }
 
-  public async verifyAgeProof(proof: ProofHash, minimumAge: Age): Promise<boolean> {
+  public async verifyAgeProof(proof: ProofHash): Promise<boolean> {
     // In a real implementation, this would verify the zero-knowledge proof
     // For now, we simply check if the proof hash is valid format
     // In production, this would verify cryptographic signatures and proofs
@@ -37,6 +37,6 @@ export class MockCryptographicService implements ICryptographicService {
 
   public async generateSecureId(): Promise<string> {
     // Generate a cryptographically secure random ID
-    return crypto.randomUUID();
+    return randomUUID();
   }
 }

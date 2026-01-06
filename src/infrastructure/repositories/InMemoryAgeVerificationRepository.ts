@@ -1,8 +1,5 @@
 import { AgeVerification } from '../../domain/entities/AgeVerification';
 import { IAgeVerificationRepository } from '../../domain/repositories/IAgeVerificationRepository';
-import { Age } from '../../domain/value-objects/Age';
-import { ProofHash } from '../../domain/value-objects/ProofHash';
-import { Timestamp } from '../../domain/value-objects/Timestamp';
 
 /**
  * In-Memory Implementation of Age Verification Repository

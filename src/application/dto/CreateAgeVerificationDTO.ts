@@ -1,7 +1,7 @@
 /**
  * Data Transfer Object for creating an age verification request
  */
-export interface CreateAgeVerificationDTO {
+export interface ICreateAgeVerificationDTO {
   actualAge: number;
   minimumAge: number;
   secret: string;

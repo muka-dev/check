@@ -2,9 +2,9 @@ import { IAgeVerificationRepository } from '../../domain/repositories/IAgeVerifi
 import { ICryptographicService } from '../../domain/services/ICryptographicService';
 import { AgeVerificationService } from '../../domain/services/AgeVerificationService';
 import { Age } from '../../domain/value-objects/Age';
-import { ProofHash } from '../../domain/value-objects/ProofHash';
-import { CreateAgeVerificationDTO } from '../dto/CreateAgeVerificationDTO';
-import { AgeVerificationResponseDTO } from '../dto/AgeVerificationResponseDTO';
+import { ICreateAgeVerificationDTO } from '../dto/CreateAgeVerificationDTO';
+import { IAgeVerificationResponseDTO } from '../dto/AgeVerificationResponseDTO';
+import { AgeVerification } from '../../domain/entities/AgeVerification';
 
 /**
  * Use Case: Create Age Verification
@@ -17,7 +17,7 @@ export class CreateAgeVerificationUseCase {
     private readonly domainService: AgeVerificationService,
   ) {}
 
-  public async execute(dto: CreateAgeVerificationDTO): Promise<AgeVerificationResponseDTO> {
+  public async execute(dto: ICreateAgeVerificationDTO): Promise<IAgeVerificationResponseDTO> {
     // Create value objects
     const actualAge = new Age(dto.actualAge);
     const minimumAge = new Age(dto.minimumAge);
@@ -28,11 +28,7 @@ export class CreateAgeVerificationUseCase {
     }
 
     // Generate cryptographic proof
-    const proofHash = await this.cryptoService.generateAgeProof(
-      actualAge,
-      minimumAge,
-      dto.secret,
-    );
+    const proofHash = await this.cryptoService.generateAgeProof(actualAge, minimumAge, dto.secret);
 
     // Check if proof already exists
     const exists = await this.repository.exists(proofHash.getValue());
@@ -58,7 +54,7 @@ export class CreateAgeVerificationUseCase {
     return this.toDTO(verification);
   }
 
-  private toDTO(verification: any): AgeVerificationResponseDTO {
+  private toDTO(verification: AgeVerification): IAgeVerificationResponseDTO {
     return {
       id: verification.getId(),
       proofHash: verification.getProofHash().getValue(),

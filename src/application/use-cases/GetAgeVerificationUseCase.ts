@@ -1,5 +1,5 @@
 import { IAgeVerificationRepository } from '../../domain/repositories/IAgeVerificationRepository';
-import { AgeVerificationResponseDTO } from '../dto/AgeVerificationResponseDTO';
+import { IAgeVerificationResponseDTO } from '../dto/AgeVerificationResponseDTO';
 
 /**
  * Use Case: Get Age Verification by ID
@@ -8,7 +8,7 @@ import { AgeVerificationResponseDTO } from '../dto/AgeVerificationResponseDTO';
 export class GetAgeVerificationUseCase {
   constructor(private readonly repository: IAgeVerificationRepository) {}
 
-  public async execute(id: string): Promise<AgeVerificationResponseDTO | null> {
+  public async execute(id: string): Promise<IAgeVerificationResponseDTO | null> {
     const verification = await this.repository.findById(id);
 
     if (!verification) {

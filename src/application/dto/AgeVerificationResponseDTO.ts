@@ -1,7 +1,7 @@
 /**
  * Data Transfer Object for age verification response
  */
-export interface AgeVerificationResponseDTO {
+export interface IAgeVerificationResponseDTO {
   id: string;
   proofHash: string;
   minimumAge: number;
