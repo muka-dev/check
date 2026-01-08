@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { AgeVerificationService } from './domain/services/AgeVerificationService';
 import { CreateAgeVerificationUseCase } from './application/use-cases/CreateAgeVerificationUseCase';
 import { VerifyAgeProofUseCase } from './application/use-cases/VerifyAgeProofUseCase';
