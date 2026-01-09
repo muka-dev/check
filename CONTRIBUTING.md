@@ -35,6 +35,7 @@ npm run build
 ### Code Style
 
 This project uses:
+
 - **ESLint** for code linting
 - **Prettier** for code formatting
 - **TypeScript** with strict mode enabled
@@ -86,22 +87,26 @@ npm run test:coverage
 ## Architecture Guidelines
 
 ### Domain Layer
+
 - Pure business logic, no external dependencies
 - Entities represent core business concepts
 - Value Objects are immutable
 - Repository interfaces define data contracts
 
 ### Application Layer
+
 - Use cases orchestrate business logic
 - DTOs transfer data between layers
 - No direct dependencies on infrastructure
 
 ### Infrastructure Layer
+
 - Implements domain interfaces
 - Handles external services (database, APIs, etc.)
 - Can depend on both domain and application layers
 
 ### Presentation Layer
+
 - Handles user interaction
 - Controllers process requests/responses
 - Depends on application layer
@@ -117,6 +122,7 @@ npm run test:coverage
 ## Questions?
 
 If you have questions, please:
+
 1. Check existing documentation
 2. Search existing issues
 3. Open a new issue with your question

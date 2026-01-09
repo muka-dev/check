@@ -1,14 +1,23 @@
 import { IAgeVerificationRepository } from '../../domain/repositories/IAgeVerificationRepository';
 import { IAgeVerificationResponseDTO } from '../dto/AgeVerificationResponseDTO';
+import { IUseCase } from './IUseCase';
 
 /**
  * Use Case: Get Age Verification by ID
  * Retrieves an age verification by its ID
  */
-export class GetAgeVerificationUseCase {
+export class GetAgeVerificationUseCase implements IUseCase {
   constructor(private readonly repository: IAgeVerificationRepository) {}
 
-  public async execute(id: string): Promise<IAgeVerificationResponseDTO | null> {
+  public async execute(id?: string): Promise<IAgeVerificationResponseDTO | null> {
+    if (!id) {
+      return null;
+    }
+
+    return this.executeImpl(id);
+  }
+
+  private async executeImpl(id: string): Promise<IAgeVerificationResponseDTO | null> {
     const verification = await this.repository.findById(id);
 
     if (!verification) {

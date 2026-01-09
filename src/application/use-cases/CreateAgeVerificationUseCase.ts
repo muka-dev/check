@@ -5,19 +5,27 @@ import { Age } from '../../domain/value-objects/Age';
 import { ICreateAgeVerificationDTO } from '../dto/CreateAgeVerificationDTO';
 import { IAgeVerificationResponseDTO } from '../dto/AgeVerificationResponseDTO';
 import { AgeVerification } from '../../domain/entities/AgeVerification';
+import { IUseCase } from './IUseCase';
 
 /**
  * Use Case: Create Age Verification
  * Orchestrates the creation of a new age verification proof
  */
-export class CreateAgeVerificationUseCase {
+export class CreateAgeVerificationUseCase implements IUseCase {
   constructor(
     private readonly repository: IAgeVerificationRepository,
     private readonly cryptoService: ICryptographicService,
     private readonly domainService: AgeVerificationService,
   ) {}
 
-  public async execute(dto: ICreateAgeVerificationDTO): Promise<IAgeVerificationResponseDTO> {
+  public async execute(dto?: ICreateAgeVerificationDTO): Promise<IAgeVerificationResponseDTO> {
+    if (!dto) {
+      throw new Error('No valid dto found');
+    }
+    return this.executeImpl(dto);
+  }
+
+  private async executeImpl(dto: ICreateAgeVerificationDTO): Promise<IAgeVerificationResponseDTO> {
     // Create value objects
     const actualAge = new Age(dto.actualAge);
     const minimumAge = new Age(dto.minimumAge);

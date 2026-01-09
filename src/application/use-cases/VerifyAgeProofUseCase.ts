@@ -22,7 +22,7 @@ export class VerifyAgeProofUseCase {
     const minimumAge = new Age(dto.minimumAge);
 
     // Verify cryptographic proof
-    const isCryptographicallyValid = await this.cryptoService.verifyAgeProof(proofHash);
+    const isCryptographicallyValid = await this.cryptoService.verifyAgeProof(proofHash, minimumAge);
 
     if (!isCryptographicallyValid) {
       return false;

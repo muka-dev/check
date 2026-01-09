@@ -22,11 +22,14 @@ export class MockCryptographicService implements ICryptographicService {
     return new ProofHash(hash);
   }
 
-  public async verifyAgeProof(proof: ProofHash): Promise<boolean> {
+  public async verifyAgeProof(proof: ProofHash, minimumAge: Age): Promise<boolean> {
     // In a real implementation, this would verify the zero-knowledge proof
     // For now, we simply check if the proof hash is valid format
     // In production, this would verify cryptographic signatures and proofs
     try {
+      // Avoid unused variable warning for mock
+      if (minimumAge.getValue() < 0) return false;
+
       // The proof validation would involve complex cryptographic operations
       // For this mock, we just check if it's a valid hash format
       return proof.getValue().length === 64;

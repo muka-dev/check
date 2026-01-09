@@ -13,16 +13,13 @@ describe('ProofHash Value Object', () => {
       expect(() => new ProofHash('')).toThrow('ProofHash must be a non-empty string');
     });
 
-    it('should throw error for invalid hex string', () => {
-      expect(() => new ProofHash('not-a-hex-string')).toThrow(
-        'ProofHash must be a valid 64-character hexadecimal string',
-      );
+    it('should throw error for very short string', () => {
+      expect(() => new ProofHash('short')).toThrow('ProofHash must be at least 10 characters long');
     });
 
-    it('should throw error for incorrect length', () => {
-      expect(() => new ProofHash('0123456789abcdef')).toThrow(
-        'ProofHash must be a valid 64-character hexadecimal string',
-      );
+    it('should accept non-hex base64 characters', () => {
+      const base64Proto = 'eyJwaV9hIjpbIjM4MDQ5OTAwMzQ5NjE4NDMyN';
+      expect(() => new ProofHash(base64Proto)).not.toThrow();
     });
   });
 

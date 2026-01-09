@@ -14,14 +14,16 @@ The project follows **Clean Architecture** (Hexagonal Architecture) with clear s
 - **Application Layer**: Use cases and application-specific business rules
 - **Infrastructure Layer**: External implementations (database, crypto services)
 - **Presentation Layer**: User interfaces and API controllers
+- **Smart Contracts**: Secured by [Foundry](docs/FOUNDRY.md)
 
-See [ARCHITECTURE.md](./ARCHITECTURE.md) for detailed architecture documentation.
+See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed architecture documentation.
+
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 
 ### Installation
@@ -40,6 +42,8 @@ npm install
 ```bash
 # Run in development mode with hot reload
 npm run dev
+# Server runs at http://localhost:3000
+# API Docs at http://localhost:3000/api/v1/docs
 
 # Build the project
 npm run build
@@ -58,11 +62,15 @@ npm run lint
 
 # Format code
 npm run format
+
+# View Database
+npx prisma studio
 ```
 
 ## 📦 Project Structure
 
-```
+```struct
+prisma/                  # Database Schema & Migrations
 src/
 ├── domain/              # Domain layer (business logic)
 │   ├── entities/        # Domain entities
@@ -73,19 +81,32 @@ src/
 │   ├── use-cases/       # Application use cases
 │   └── dto/             # Data transfer objects
 ├── infrastructure/      # Infrastructure layer
+│   ├── crypto/          # Cryptographic implementations (ZK)
+│   │   └── circuits/    # Circom circuit definitions & artifacts
 │   ├── repositories/    # Repository implementations
 │   ├── services/        # External service implementations
-│   └── config/          # Configuration
-└── presentation/        # Presentation layer
-    ├── controllers/     # API controllers (to be implemented)
-    └── middlewares/     # Middlewares (to be implemented)
+│   └── api/             # App entry point & configuration
+    ├── controllers/     # API controllers
+    ├── middleware/      # Middlewares (Error handling)
+    └── routes/          # API Route definitions
+scripts/                 # Utility scripts (e.g., ZK verification)
+docs/                    # Documentation (Architecture, Crypto)
 ```
+
+## 📚 API Documentation
+
+The project includes interactive API documentation powered by Swagger/OpenAPI.
+
+1. Start the server (`npm run dev` or `npm start`)
+2. Visit **<http://localhost:3000/api/v1/docs>**
 
 ## 🧪 Testing
 
 The project includes comprehensive unit tests following clean code practices:
 
 - Domain layer tests (pure business logic)
+- Application Use Case tests
+- Presentation Controller tests
 - Value object validation tests
 - Entity behavior tests
 
@@ -96,11 +117,14 @@ This system is designed with privacy and security as core principles:
 - **Anonymous Verification**: No personal information stored or transmitted
 - **Cryptographic Proofs**: Age verification without revealing actual age
 - **Decentralized**: No central authority controls verification
-- **Zero-Knowledge Proofs**: (Mock implementation, to be replaced with actual ZKP)
+- **Zero-Knowledge Proofs**: Real implementation using `snarkjs` and `circom` (Groth16)
 
 ## 🛠️ Technologies
 
 - **TypeScript**: Type-safe development
+- **SQLite, PSQL & Prisma**: Database and ORM
+- **Redis**: In-memory caching for high performance
+- **Circom & SnarkJS**: Zero-Knowledge Proof construction and verification
 - **Jest**: Testing framework
 - **ESLint & Prettier**: Code quality and formatting
 - **Husky & lint-staged**: Pre-commit hooks
@@ -130,5 +154,8 @@ ISC
 
 ## 🔗 Related Documentation
 
-- [Architecture Documentation](./ARCHITECTURE.md) - Detailed architecture guide
+- [Project Status](./docs/PROJECT_STATUS.md) - Current development status
+- [Architecture Documentation](./docs/ARCHITECTURE.md) - Detailed architecture guide
+- [Database Guide](./docs/DATABASE.md) - Database schema and tooling
+- [Cryptography Guide](./docs/CRYPTO.md) - ZK-SNARKs implementation details
 - [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) - By Robert C. Martin

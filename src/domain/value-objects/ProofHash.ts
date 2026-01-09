@@ -14,10 +14,13 @@ export class ProofHash {
     if (!value || typeof value !== 'string') {
       throw new Error('ProofHash must be a non-empty string');
     }
-    // Basic hex string validation (assuming SHA-256 hash - 64 characters)
-    const hexPattern = /^[0-9a-fA-F]{64}$/;
-    if (!hexPattern.test(value)) {
-      throw new Error('ProofHash must be a valid 64-character hexadecimal string');
+
+    // Validation relaxed to support:
+    // 1. SHA-256 Hex strings (64 chars) - Used in Mocks
+    // 2. Base64 encoded ZK Proofs (longer) - Used in Production
+    // 3. Simulation strings (prefixed with sim_) - Used in dev fallback
+    if (value.length < 10) {
+      throw new Error('ProofHash must be at least 10 characters long');
     }
   }
 

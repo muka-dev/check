@@ -15,7 +15,7 @@ export interface ICryptographicService {
   /**
    * Verify a proof without knowing the actual age
    */
-  verifyAgeProof(proof: ProofHash): Promise<boolean>;
+  verifyAgeProof(proof: ProofHash, minimumAge: Age): Promise<boolean>;
 
   /**
    * Generate a secure random identifier

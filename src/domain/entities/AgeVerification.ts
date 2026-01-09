@@ -29,6 +29,21 @@ export class AgeVerification {
     this.isRevoked = false;
   }
 
+  public static reconstitute(
+    id: string,
+    proofHash: ProofHash,
+    minimumAge: Age,
+    timestamp: Timestamp,
+    expiresAt: Timestamp,
+    isRevoked: boolean,
+  ): AgeVerification {
+    const verification = new AgeVerification(id, proofHash, minimumAge, timestamp, expiresAt);
+    if (isRevoked) {
+      verification.revoke();
+    }
+    return verification;
+  }
+
   public getId(): string {
     return this.id;
   }

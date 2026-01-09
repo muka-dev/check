@@ -1,8 +1,12 @@
 import tseslint from '@typescript-eslint/eslint-plugin';
 import tsparser from '@typescript-eslint/parser';
 import prettier from 'eslint-plugin-prettier';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default [
+  {
+    ignores: ['src/generated/**', 'dist/**', 'coverage/**'],
+  },
   {
     files: ['src/**/*.ts'],
     ignores: ['**/*.test.ts', '**/*.spec.ts'],
@@ -22,7 +26,7 @@ export default [
       'prettier/prettier': 'error',
       '@typescript-eslint/explicit-function-return-type': 'warn',
       '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/no-unused-vars': 'error',
+      '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
       '@typescript-eslint/naming-convention': [
         'error',
         {
@@ -44,7 +48,7 @@ export default [
     },
   },
   {
-    files: ['**/*.test.ts', '**/*.spec.ts'],
+    files: ['**/*.test.ts', '**/*.spec.ts', 'scripts/**/*.ts'],
     languageOptions: {
       parser: tsparser,
       parserOptions: {
@@ -62,4 +66,5 @@ export default [
       'no-console': 'off',
     },
   },
+  eslintConfigPrettier,
 ];
