@@ -1,4 +1,4 @@
-import { AgeVerification } from '../entities/AgeVerification';
+import { AgeVerification } from '../entities/AgeVerification.js';
 
 /**
  * Repository interface for AgeVerification persistence

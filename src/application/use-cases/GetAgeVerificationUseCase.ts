@@ -1,6 +1,6 @@
-import { IAgeVerificationRepository } from '../../domain/repositories/IAgeVerificationRepository';
-import { IAgeVerificationResponseDTO } from '../dto/AgeVerificationResponseDTO';
-import { IUseCase } from './IUseCase';
+import { IAgeVerificationRepository } from '../../domain/repositories/IAgeVerificationRepository.js';
+import { IAgeVerificationResponseDTO } from '../dto/AgeVerificationResponseDTO.js';
+import { IUseCase } from './IUseCase.js';
 
 /**
  * Use Case: Get Age Verification by ID

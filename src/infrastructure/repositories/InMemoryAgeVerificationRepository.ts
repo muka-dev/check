@@ -1,5 +1,5 @@
-import { AgeVerification } from '../../domain/entities/AgeVerification';
-import { IAgeVerificationRepository } from '../../domain/repositories/IAgeVerificationRepository';
+import { AgeVerification } from '../../domain/entities/AgeVerification.js';
+import { IAgeVerificationRepository } from '../../domain/repositories/IAgeVerificationRepository.js';
 
 /**
  * In-Memory Implementation of Age Verification Repository

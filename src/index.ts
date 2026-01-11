@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
-import app from './presentation/api/app';
-import { config } from './infrastructure/config/app.config';
+
+import { config } from './infrastructure/config/app.config.js';
+import app from './presentation/api/app.js';
 
 /**
  * Main Application Entry Point

@@ -1,7 +1,7 @@
 import { createHash, randomUUID } from 'crypto';
-import { ICryptographicService } from '../../domain/services/ICryptographicService';
-import { Age } from '../../domain/value-objects/Age';
-import { ProofHash } from '../../domain/value-objects/ProofHash';
+import { ICryptographicService } from '../../domain/services/ICryptographicService.js';
+import { Age } from '../../domain/value-objects/Age.js';
+import { ProofHash } from '../../domain/value-objects/ProofHash.js';
 
 /**
  * Mock Implementation of Cryptographic Service

@@ -1,11 +1,11 @@
-import { IAgeVerificationRepository } from '../../domain/repositories/IAgeVerificationRepository';
-import { ICryptographicService } from '../../domain/services/ICryptographicService';
-import { AgeVerificationService } from '../../domain/services/AgeVerificationService';
-import { Age } from '../../domain/value-objects/Age';
-import { ICreateAgeVerificationDTO } from '../dto/CreateAgeVerificationDTO';
-import { IAgeVerificationResponseDTO } from '../dto/AgeVerificationResponseDTO';
-import { AgeVerification } from '../../domain/entities/AgeVerification';
-import { IUseCase } from './IUseCase';
+import { IAgeVerificationRepository } from '../../domain/repositories/IAgeVerificationRepository.js';
+import { ICryptographicService } from '../../domain/services/ICryptographicService.js';
+import { AgeVerificationService } from '../../domain/services/AgeVerificationService.js';
+import { Age } from '../../domain/value-objects/Age.js';
+import { ICreateAgeVerificationDTO } from '../dto/CreateAgeVerificationDTO.js';
+import { IAgeVerificationResponseDTO } from '../dto/AgeVerificationResponseDTO.js';
+import { AgeVerification } from '../../domain/entities/AgeVerification.js';
+import { IUseCase } from './IUseCase.js';
 
 /**
  * Use Case: Create Age Verification

@@ -1,5 +1,5 @@
-import { Age } from '../value-objects/Age';
-import { ProofHash } from '../value-objects/ProofHash';
+import { Age } from '../value-objects/Age.js';
+import { ProofHash } from '../value-objects/ProofHash.js';
 
 /**
  * Service interface for cryptographic proof generation

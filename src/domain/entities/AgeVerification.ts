@@ -1,6 +1,6 @@
-import { Age } from '../value-objects/Age';
-import { ProofHash } from '../value-objects/ProofHash';
-import { Timestamp } from '../value-objects/Timestamp';
+import { Age } from '../value-objects/Age.js';
+import { ProofHash } from '../value-objects/ProofHash.js';
+import { Timestamp } from '../value-objects/Timestamp.js';
 
 /**
  * AgeVerification Entity

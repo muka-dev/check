@@ -14,12 +14,9 @@ The project follows **Clean Architecture** (Hexagonal Architecture) with clear s
 - **Application Layer**: Use cases and application-specific business rules
 - **Infrastructure Layer**: External implementations (database, crypto services)
 - **Presentation Layer**: User interfaces and API controllers
-- **Smart Contracts**: Secured by [Foundry](docs/FOUNDRY.md)
+- **Smart Contracts**: Secured by Hardhat
 
-See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed architecture documentation.
-
-
-## 🚀 Getting Started
+See [docs/technical/developer_guide.md](docs/technical/developer_guide.md) for detailed developer setup.
 
 ### Prerequisites
 
@@ -67,7 +64,19 @@ npm run format
 npx prisma studio
 ```
 
-## 📦 Project Structure
+## � Docker Services
+
+The project relies on Docker for external services (Redis, PostgreSQL).
+
+| Script | Description |
+| :--- | :--- |
+| `npm run services:up` | Start all required services in background (Redis, Postgres) |
+| `npm run services:down` | Stop and remove service containers |
+| `npm run services:logs` | View logs from running services |
+
+These commands allow you to spin up a complete local environment quickly.
+
+## �📦 Project Structure
 
 ```struct
 prisma/                  # Database Schema & Migrations
